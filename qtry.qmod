@@ -1,0 +1,141 @@
+{
+  "functions": [
+    {
+      "name": "compute_tanh",
+      "param_decls": {
+        "precision": {
+          "kind": "int"
+        }
+      },
+      "port_declarations": {
+        "x": {
+          "name": "x",
+          "quantum_type": {
+            "kind": "qnum"
+          },
+          "direction": "inout"
+        },
+        "tanh_x": {
+          "name": "tanh_x",
+          "quantum_type": {
+            "kind": "qnum"
+          },
+          "direction": "output"
+        }
+      },
+      "operand_declarations": {},
+      "positional_arg_declarations": [
+        {
+          "name": "precision",
+          "classical_type": {
+            "kind": "int"
+          }
+        },
+        {
+          "name": "x",
+          "quantum_type": {
+            "kind": "qnum"
+          },
+          "direction": "inout"
+        },
+        {
+          "name": "tanh_x",
+          "quantum_type": {
+            "kind": "qnum"
+          },
+          "direction": "output"
+        }
+      ],
+      "body": [
+        {
+          "expression": {
+            "expr": "(((x) - (0.33 * ((x) ** 3))) + (0.13 * ((x) ** 5))) - (0.05 * ((x) ** 7))"
+          },
+          "result_var": {
+            "name": "tanh_x"
+          },
+          "inplace_result": false
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "param_decls": {},
+      "port_declarations": {
+        "x": {
+          "name": "x",
+          "quantum_type": {
+            "kind": "qnum"
+          },
+          "direction": "output"
+        },
+        "y": {
+          "name": "y",
+          "quantum_type": {
+            "kind": "qnum"
+          },
+          "direction": "output"
+        }
+      },
+      "operand_declarations": {},
+      "positional_arg_declarations": [
+        {
+          "name": "x",
+          "quantum_type": {
+            "kind": "qnum"
+          },
+          "direction": "output"
+        },
+        {
+          "name": "y",
+          "quantum_type": {
+            "kind": "qnum"
+          },
+          "direction": "output"
+        }
+      ],
+      "body": [
+        {
+          "function": "allocate_num",
+          "positional_args": [
+            {
+              "expr": "4"
+            },
+            {
+              "expr": "False"
+            },
+            {
+              "expr": "4"
+            },
+            {
+              "name": "x"
+            }
+          ]
+        },
+        {
+          "function": "hadamard_transform",
+          "positional_args": [
+            {
+              "name": "x"
+            }
+          ]
+        },
+        {
+          "function": "compute_tanh",
+          "positional_args": [
+            {
+              "expr": "4"
+            },
+            {
+              "name": "x"
+            },
+            {
+              "name": "y"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "types": []
+}
